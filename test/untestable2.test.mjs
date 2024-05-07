@@ -37,4 +37,11 @@ describe("Untestable 2: a dice game", () => {
       expect(diceHandValue(i,i)).to.equal(100+i);
     }
   });
+
+  test("diceHandValue(): higher detected", () => {
+    for(let i=2; i<=6; i++){
+      expect(diceHandValue(i,1)).to.equal(i);
+      expect(diceHandValue(1,i)).to.equal(i);
+    }
+  });
 });
