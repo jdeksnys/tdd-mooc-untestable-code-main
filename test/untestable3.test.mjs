@@ -41,4 +41,15 @@ describe("Untestable 3: CSV file parsing", () => {
 
     expect(parsePeopleCsv(csv)).to.deep.equal([{ firstName: "Alice", lastName: "Green", age: 30, gender: "f" }]);
   });
+
+  test("parsePeopleCsv(): parse multiple lines", async () => {
+    let csv = `
+      Alice, Green, 30 , female
+      Bob, Brown, 33, male`
+
+    expect(parsePeopleCsv(csv)).to.deep.equal([
+      { firstName: "Alice", lastName: "Green", age: 30, gender: "f" },
+      { firstName: "Bob", lastName: "Brown", age: 33, gender: "m" }
+    ]);
+  });
 });
