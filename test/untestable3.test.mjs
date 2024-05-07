@@ -11,4 +11,13 @@ describe("Untestable 3: CSV file parsing", () => {
   test("readFile() reads ok", async () => {
     expect(await readFile("./test/dummy_file.txt")).to.equal("abc123\n");
   });
+
+  test("parsePeopleCsv(): parse comma", async () => {
+    let csv = `Alice,Green,30,female`
+    expect().to.equal();
+
+    expect(parsePeopleCsv(csv)).to.deep.equal([
+      { firstName: "Alice", lastName: "Green", age: 30, gender: "f" }
+    ]);
+  });
 });
