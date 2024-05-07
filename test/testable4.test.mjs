@@ -1,14 +1,13 @@
 import { afterEach, beforeEach, describe, test } from "vitest";
 import { PasswordService, PostgresUserDao } from "../src/testable4.mjs";
 
-describe("Untestable 4: enterprise application", () => {
+describe("Globals and singletons: enterprise application", () => {
+  let users;
+  let hasher;
   let service;
-  beforeEach(() => {
-    service = new PasswordService();
-  });
 
-  afterEach(() => {
-    PostgresUserDao.getInstance().close();
+  beforeEach(() => {
+    service = new PasswordService(users, hasher);
   });
 
   test("todo", async () => {

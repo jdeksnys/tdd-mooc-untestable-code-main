@@ -2,22 +2,10 @@ import argon2 from "@node-rs/argon2";
 import pg from "pg";
 
 export class PostgresUserDao {
-  static instance;
-
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new PostgresUserDao();
-    }
-    return this.instance;
+  // singeltons - do not use! Inject database (as function parameter), to be able to use use any database.
+  constructor(db) {
+    this.db = db;
   }
-
-  db = new pg.Pool({
-    user: process.env.PGUSER,
-    host: process.env.PGHOST,
-    database: process.env.PGDATABASE,
-    password: process.env.PGPASSWORD,
-    port: process.env.PGPORT,
-  });
 
   close() {
     this.db.end();
@@ -49,7 +37,11 @@ export class PostgresUserDao {
 }
 
 export class PasswordService {
-  users = PostgresUserDao.getInstance();
+  // pass users and hasher as function parameters, to be able to use mock versions, not using the real db.
+  constructor(users, hasher){
+    this.users = users;
+    this.hasher = hasher;
+  }
 
   async changePassword(userId, oldPassword, newPassword) {
     const user = await this.users.getById(userId);
