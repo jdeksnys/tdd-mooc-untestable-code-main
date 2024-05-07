@@ -1,5 +1,6 @@
 import argon2 from "@node-rs/argon2";
 import pg from "pg";
+import { crc32 } from "@node-rs/crc32";
 
 export class PostgresUserDao {
   // singeltons - do not use! Inject database (as function parameter), to be able to use use any database.
@@ -45,10 +46,10 @@ export class PasswordService {
 
   async changePassword(userId, oldPassword, newPassword) {
     const user = await this.users.getById(userId);
-    if (!this.hasher.verifySync(user.passwordHash, oldPassword)) {
+    if (!this.hasher.verifyPassword(user.passwordHash, oldPassword)) {
       throw new Error("wrong old password");
     }
-    user.passwordHash = this.hasher.hashSync(newPassword);
+    user.passwordHash = this.hasher.hashPassword(newPassword);
     await this.users.save(user);
   }
 }
@@ -60,6 +61,19 @@ export class TestUserDao {
     return structuredClone(this.users[id]) || null;
   }
   async save(user) {
-    this.users[user.userId] = structuredClone(user);
+    this.users[user.userId] = user;
+  }
+}
+
+export class FakeHasher {
+  // As in reference solution.
+  intToHex(n) {
+    return (n >>> 0).toString(16).padStart(8, "0");
+  }
+  hashPassword(password) {
+    return this.intToHex(crc32(password));
+  }
+  verifyPassword(hash, password) {
+    return this.hashPassword(password) === hash;
   }
 }
