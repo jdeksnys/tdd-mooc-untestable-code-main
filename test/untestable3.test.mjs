@@ -14,10 +14,7 @@ describe("Untestable 3: CSV file parsing", () => {
 
   test("parsePeopleCsv(): parse comma", async () => {
     let csv = `Alice,Green,30,female`
-    expect().to.equal();
 
-    expect(parsePeopleCsv(csv)).to.deep.equal([
-      { firstName: "Alice", lastName: "Green", age: 30, gender: "f" }
-    ]);
+    expect(parsePeopleCsv(csv)).to.deep.equal([{ firstName: "Alice", lastName: "Green", age: 30, gender: "f" }]);
   });
 });
