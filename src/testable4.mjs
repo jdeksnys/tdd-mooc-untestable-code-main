@@ -52,3 +52,13 @@ export class PasswordService {
     await this.users.save(user);
   }
 }
+
+export class TestUserDao {
+  users = {};
+  async getById(id) {
+    return structuredClone(this.users[id]) || null;
+  }
+  async save(user) {
+    this.users[user.userId] = structuredClone(user);
+  }
+}
