@@ -1,6 +1,6 @@
 import { describe, test } from "vitest";
 import { expect } from "chai";
-import { parsePeopleCsv, readFile } from "../src/untestable3.mjs";
+import { parsePeopleCsv, readFile } from "../src/testable3.mjs";
 
 // example input:
 // Loid,Forger,,Male
