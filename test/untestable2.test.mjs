@@ -17,6 +17,18 @@ describe("Untestable 2: a dice game", () => {
     expect(max_).to.equal(6);
   });
 
-  test("", () => {
+  test("diceRoll(): all 6 values returned", () => {
+    let set = new Set();
+    for(let i=0; i<1000; i++){
+      set.add(diceRoll());
+    }
+
+    expect(set.size).to.equal(6);
+    expect(set.has(1)).to.equal(true);
+    expect(set.has(2)).to.equal(true);
+    expect(set.has(3)).to.equal(true);
+    expect(set.has(4)).to.equal(true);
+    expect(set.has(5)).to.equal(true);
+    expect(set.has(6)).to.equal(true);
   });
 });
