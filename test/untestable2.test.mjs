@@ -31,4 +31,10 @@ describe("Untestable 2: a dice game", () => {
     expect(set.has(5)).to.equal(true);
     expect(set.has(6)).to.equal(true);
   });
+
+  test("diceHandValue(): pair detected", () => {
+    for(let i=1; i<=6; i++){
+      expect(diceHandValue(i,i)).to.equal(100+i);
+    }
+  });
 });
