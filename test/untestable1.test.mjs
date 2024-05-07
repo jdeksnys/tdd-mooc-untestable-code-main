@@ -13,4 +13,13 @@ describe("Untestable 1: days until Christmas", () => {
     expect(daysUntilChristmas(date2)).to.equal(0);
   });
 
+  test("1 until xmas", () => {
+    let date0 = new Date("2024-12-24T00:00:00");
+    let date1 = new Date("2024-12-24T23:59:59");
+    let date2 = new Date("2024-12-24T12:00:00");
+
+    expect(daysUntilChristmas(date0)).to.equal(1);
+    expect(daysUntilChristmas(date1)).to.equal(1);
+    expect(daysUntilChristmas(date2)).to.equal(1);
+  });
 });
