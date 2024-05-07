@@ -66,7 +66,7 @@ export class TestUserDao {
 }
 
 export class FakeHasher {
-  // As in reference solution.
+  // Hashign logic as in reference solution.
   intToHex(n) {
     return (n >>> 0).toString(16).padStart(8, "0");
   }
