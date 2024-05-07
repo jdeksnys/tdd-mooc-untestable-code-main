@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, test } from "vitest";
-import { PasswordService, PostgresUserDao } from "../src/untestable4.mjs";
+import { PasswordService, PostgresUserDao } from "../src/testable4.mjs";
 
 describe("Untestable 4: enterprise application", () => {
   let service;
